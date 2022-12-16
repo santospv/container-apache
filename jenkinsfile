@@ -7,5 +7,14 @@ pipeline{
                 echo 'Iniciando a Pipeline'
             }
         }
+        stage ('Build Image'){
+            steps{
+                echo 'Buildando a Imagem'
+                script{
+                    dockerapp = docker.buildid("santospv08/app-apache", '-f ./src/docker-compose ./src')
+                }
+            }
+        }
+ 
     }
 }
