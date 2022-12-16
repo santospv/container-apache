@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-apache
+  labels:
+    app: app-apache
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: app-apache
+      
+  template:
+    metadata:
+      labels:
+        app: app-apache
+        tier: app-apache
+    spec:
+      containers:
+        - name: app-apache
+          image: santospv08/app-apache:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+            name: app-apache
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-apache
+  labels:
+    app: app-apache
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: app-apache
+    tier: app-apache
+  type: LoadBalancer
