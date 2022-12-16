@@ -11,7 +11,7 @@ pipeline{
             steps{
                 echo 'Buildando a Imagem'
                 script{
-                    dockerapp = docker.buildid("santospv08/app-apache", '-f ./src/docker-compose ./src')
+                    dockerapp = docker.build("santospv08/app-apache-dockercompose", '-f ./src/docker-compose ./src')
                 }
             }
         }
