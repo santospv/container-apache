@@ -49,9 +49,9 @@ pipeline{
                 )
             }
         }
-        stage('Clean build Images Jenkins Server') {
-            steps{
-                sh "docker rmi -f \$(docker images -qa)"
+        stage('Clean build Images Jenkins Server') { 
+            steps { 
+                sh "docker rmi $registry:$BUILD_NUMBER" 
             }
         }
     }
