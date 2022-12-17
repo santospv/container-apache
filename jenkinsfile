@@ -42,6 +42,7 @@ pipeline{
                         clusterName: env.CLUSTER_NAME, 
                         location: env.LOCATION, 
                         manifestPattern: 'deployment.yaml', 
+                        namespace: 'ingress'
                         credentialsId: env.CREDENTIALS_ID, 
                         verifyDeployments: true
                     ]
