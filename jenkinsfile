@@ -52,7 +52,7 @@ pipeline{
         }
         stage('Clean build Images Jenkins Server') { 
             steps { 
-                sh "docker rmi $REGISTRY:$BUILD_ID" 
+                sh "docker rmi $REGISTRY:${env.BUILD_ID}" 
             }
         }
     }
