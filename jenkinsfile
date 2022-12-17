@@ -5,6 +5,7 @@ pipeline{
         CLUSTER_NAME = 'pvs-devops-iac-gke'
         LOCATION = 'us-south1-c'
         CREDENTIALS_ID = 'gcp-gke'
+        REGISTRY = 'santospv08/app-apache-docker'
     }
 
     stages {
@@ -51,7 +52,7 @@ pipeline{
         }
         stage('Clean build Images Jenkins Server') { 
             steps { 
-                sh "docker rmi $registry:$BUILD_ID" 
+                sh "docker rmi $REGISTRY:$BUILD_ID" 
             }
         }
     }
