@@ -18,7 +18,7 @@ pipeline{
             steps{
                 echo 'Buildando a Imagem'
                 script{
-                    dockerapp = docker.build("$REGISTRY:${env.BUILD_ID}", ' .')
+                    dockerapp = docker.build("santospv08/app-apache-docker:${env.BUILD_ID}", ' .')
                 }
             }
         }
@@ -52,7 +52,7 @@ pipeline{
         }
         stage('Clean build Images Jenkins Server') { 
             steps { 
-                sh "docker rmi $REGISTRY:${env.BUILD_ID}" 
+                sh "docker rmi $REGISTRY:$BUILD_ID" 
             }
         }
     }
