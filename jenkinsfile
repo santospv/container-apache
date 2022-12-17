@@ -49,5 +49,10 @@ pipeline{
                 )
             }
         }
+        stage('Clean build Images Jenkins Server') {
+            steps{
+                sh "docker image rm -f $(docker image ls -a)"
+            }
+        }
     }
 }
