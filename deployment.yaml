@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: ingress
   annotations:
     prometheus.io/scrape: 'true'
     prometheus.io/path: '/data/metrics'
@@ -33,6 +34,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: ingress
   name: app-apache
   labels:
     app: app-apache
