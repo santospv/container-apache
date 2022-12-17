@@ -7,6 +7,7 @@ pipeline{
         CREDENTIALS_ID = 'gcp-gke'
         REGISTRY       = 'santospv08/app-apache-docker'
         REGISTRY2      = 'registry.hub.docker.com/santospv08/app-apache-docker'
+        $LAST24H       = 'until=24h'  
     }
 
     stages {
@@ -55,7 +56,7 @@ pipeline{
             steps { 
                 sh "docker rmi $REGISTRY:$BUILD_ID" 
                 sh "docker rmi $REGISTRY2:$BUILD_ID" 
-                sh "docker image prune -a --force --filter "until=1h"
+                sh "docker image prune -a --force --filter $LAST24H"
             }
         }
     }
