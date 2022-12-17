@@ -1,12 +1,12 @@
 pipeline{
     agent any
     environment {
-        PROJECT_ID = 'pvs-devops-iac'
-        CLUSTER_NAME = 'pvs-devops-iac-gke'
-        LOCATION = 'us-south1-c'
+        PROJECT_ID     = 'pvs-devops-iac'
+        CLUSTER_NAME   = 'pvs-devops-iac-gke'
+        LOCATION       = 'us-south1-c'
         CREDENTIALS_ID = 'gcp-gke'
-        REGISTRY = 'santospv08/app-apache-docker'
-        REGISTRY2 = 'https://registry.hub.docker.com'
+        REGISTRY       = 'santospv08/app-apache-docker'
+        REGISTRY2      = 'registry.hub.docker.com/santospv08/app-apache-docker'
     }
 
     stages {
@@ -55,6 +55,8 @@ pipeline{
             steps { 
                 sh "docker rmi $REGISTRY:$BUILD_ID" 
                 sh "docker rmi $REGISTRY2:$BUILD_ID" 
+                sh "docker rmi $REGISTRY:latest" 
+                sh "docker rmi $REGISTRY2:latest" 
             }
         }
     }
