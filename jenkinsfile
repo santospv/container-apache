@@ -6,6 +6,7 @@ pipeline{
         LOCATION = 'us-south1-c'
         CREDENTIALS_ID = 'gcp-gke'
         REGISTRY = 'santospv08/app-apache-docker'
+        REGISTRY2 = 'https://registry.hub.docker.com'
     }
 
     stages {
@@ -26,7 +27,7 @@ pipeline{
             steps{
                 echo 'Subindo a Imagem'
                 script{
-                    docker.withRegistry('santospv08/app-apache-docker', 'dockerhub'){
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
                         dockerapp.push("latest")
                         dockerapp.push("${env.BUILD_ID}")
                     }
@@ -52,7 +53,8 @@ pipeline{
         }
         stage('Clean build Images Jenkins Server') { 
             steps { 
-                sh "docker rmi $REGISTRY:${env.BUILD_ID}" 
+                sh "docker rmi $REGISTRY:$BUILD_ID" 
+                sh "docker rmi $REGISTRY2:$BUILD_ID" 
             }
         }
     }
