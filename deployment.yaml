@@ -1,6 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: '/data/metrics'
+    prometheus.io/port: '80'
   name: app-apache
   labels:
     app: app-apache
@@ -20,6 +24,7 @@ spec:
       containers:
         - name: app-apache
           image: santospv08/app-apache-docker:latest
+          
           imagePullPolicy: Always
           ports:
           - containerPort: 80
