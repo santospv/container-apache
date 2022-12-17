@@ -51,7 +51,7 @@ pipeline{
         }
         stage('Clean build Images Jenkins Server') {
             steps{
-                sh "docker rmi \$(docker images -q -f dangling=true)"
+                sh "docker rmi -f \$(docker images -qa)"
             }
         }
     }
