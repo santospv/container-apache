@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ingress
   name: app-apache
+  namespace: ingress
   labels:
     app: app-apache
 spec:
@@ -34,8 +34,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: ingress
   name: app-apache
+  namespace: ingress
   labels:
     app: app-apache
 spec:
