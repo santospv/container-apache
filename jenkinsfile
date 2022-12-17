@@ -26,7 +26,7 @@ pipeline{
             steps{
                 echo 'Subindo a Imagem'
                 script{
-                    docker.withRegistry(''$REGISTRY'', 'dockerhub'){
+                    docker.withRegistry('santospv08/app-apache-docker', 'dockerhub'){
                         dockerapp.push("latest")
                         dockerapp.push("${env.BUILD_ID}")
                     }
