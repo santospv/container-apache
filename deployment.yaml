@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: app-apache
-          image: santospv08/app-apache-docker:latest
+          image: santospv08/app-apache-docker:{{tag}}
           
           imagePullPolicy: Always
           ports:
