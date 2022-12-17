@@ -55,6 +55,7 @@ pipeline{
             steps { 
                 sh "docker rmi $REGISTRY:$BUILD_ID" 
                 sh "docker rmi $REGISTRY2:$BUILD_ID" 
+                sh "docker image prune -a --force --filter "until=1h"
             }
         }
     }
